@@ -9,10 +9,17 @@ export async function action({ request }) {
     // console.log(...formData)
     const datos = Object.fromEntries(formData)
 
+    const email = formData.get('email')
+
     // Validación
     const errores = []
     if (Object.values(datos).includes('')) {
         errores.push('Todos los campos son obligatorios')
+    }
+
+    let regexEmail = new RegExp("([!#-'*+/-9=?A-Z^-~-]+(\.[!#-'*+/-9=?A-Z^-~-]+)*|\"\(\[\]!#-[^-~ \t]|(\\[\t -~]))+\")@([!#-'*+/-9=?A-Z^-~-]+(\.[!#-'*+/-9=?A-Z^-~-]+)*|\[[\t -Z^-~]*])");
+    if (email.length > 0 && !regexEmail.test(email)) {
+        errores.push('El Email no es válido')
     }
 
     // Retornar datos si hay errores
@@ -43,7 +50,7 @@ const NuevoCliente = () => {
 
                 {errores?.length && errores.map((error, i) => <Error key={i}>{error}</Error>)}
 
-                <Form method="post">
+                <Form method="post" noValidate>
                     <Formulario />
                     <input type="submit" className="mt-5 w-full bg-teal-800 p-3 uppercase font-bold text-white text-lg" value="Registrar cliente" />
                 </Form>
