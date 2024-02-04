@@ -27,7 +27,7 @@ export async function action({ request }) {
         return errores
     }
 
-    return null
+    return []
 }
 
 const NuevoCliente = () => {
@@ -47,7 +47,6 @@ const NuevoCliente = () => {
             </div>
 
             <div className="bg-white shadow rounded-md md:w-3/4 mx-auto px-5 py-10 mt-20">
-
                 {errores?.length && errores.map((error, i) => <Error key={i}>{error}</Error>)}
 
                 <Form method="post" noValidate>
