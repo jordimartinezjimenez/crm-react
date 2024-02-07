@@ -1,39 +1,47 @@
 {
-    "clientes": [
-        {
-            "id": 1,
-            "nombre": "Juan",
-            "telefono": 111111111,
-            "email": "juan@gmail.com",
-            "empresa": "Apple"
-        },
-        {
-            "id": 2,
-            "nombre": "Karen",
-            "telefono": 222222222,
-            "email": "karen@gmail.com",
-            "empresa": "Vercel"
-        },
-        {
-            "id": 3,
-            "nombre": "Josue",
-            "telefono": 333333333,
-            "email": "josue@gmail.com",
-            "empresa": "Lutrinae"
-        },
-        {
-            "id": 4,
-            "nombre": "Miguel",
-            "telefono": 444444444,
-            "email": "miguel@gmail.com",
-            "empresa": "Microsoft"
-        },
-        {
-            "id": 5,
-            "nombre": "Pedro",
-            "telefono": 555555555,
-            "email": "pedro@gmail.com",
-            "empresa": "Meta"
-        }
-    ]
+  "clientes": [
+    {
+      "id": "1",
+      "nombre": "Juan",
+      "telefono": 111111111,
+      "email": "juan@gmail.com",
+      "empresa": "Apple"
+    },
+    {
+      "id": "2",
+      "nombre": "Karen",
+      "telefono": 222222222,
+      "email": "karen@gmail.com",
+      "empresa": "Vercel"
+    },
+    {
+      "id": "3",
+      "nombre": "Josue",
+      "telefono": 333333333,
+      "email": "josue@gmail.com",
+      "empresa": "Lutrinae"
+    },
+    {
+      "id": "4",
+      "nombre": "Miguel",
+      "telefono": 444444444,
+      "email": "miguel@gmail.com",
+      "empresa": "Microsoft"
+    },
+    {
+      "id": "5",
+      "nombre": "Pedro",
+      "telefono": 555555555,
+      "email": "pedro@gmail.com",
+      "empresa": "Meta"
+    },
+    {
+      "nombre": "Aaa",
+      "empresa": "Aaa",
+      "email": "jordimj63@gmail.com",
+      "telefono": "999999999",
+      "notas": "Aaa",
+      "id": "34c1"
+    }
+  ]
 }

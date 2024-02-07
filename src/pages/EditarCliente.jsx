@@ -1,9 +1,21 @@
-import { useNavigate, Form, useActionData, redirect } from "react-router-dom";
-import Formulario from "../components/Formulario";
-import Error from "../components/Error";
-import { agregarCliente } from '../data/clientes'
+import { Form, useNavigate, useLoaderData, useActionData, redirect } from "react-router-dom"
+import { obtenerCliente, actualizarCliente } from "../data/clientes"
+import Formulario from "../components/Formulario"
+import Error from "../components/Error"
 
-export async function action({ request }) {
+export async function loader({ params }) {
+    const cliente = await obtenerCliente(params.clienteId)
+
+    if (Object.values(cliente).length === 0) {
+        throw new Response('', {
+            status: 400,
+            statusText: 'El Cliente no fue encontrado'
+        })
+    }
+    return cliente
+}
+
+export async function action({ request, params }) {
     const formData = await request.formData()
 
     // console.log(formData.get('nombre'))
@@ -28,20 +40,22 @@ export async function action({ request }) {
         return errores
     }
 
-    await agregarCliente(datos)
-
+    // Actualizar el cliente
+    await actualizarCliente(params.clienteId, datos)
     return redirect('/')
+
 }
 
-const NuevoCliente = () => {
+const EditarCliente = () => {
 
-    const errores = useActionData()
     const navigate = useNavigate()
+    const cliente = useLoaderData()
+    const errores = useActionData()
 
     return (
         <>
-            <h1 className="font-black text-4xl">Nuevo Cliente</h1>
-            <p className="mt-3">Llena todos los campos para registrar un nuevo cliente</p>
+            <h1 className="font-black text-4xl">Editar Cliente</h1>
+            <p className="mt-3">Aquí puedes modificar los datos del cliente</p>
 
             <div className="flex justify-end">
                 <button
@@ -53,12 +67,14 @@ const NuevoCliente = () => {
                 {errores?.length && errores.map((error, i) => <Error key={i}>{error}</Error>)}
 
                 <Form method="post" noValidate>
-                    <Formulario />
-                    <input type="submit" className="mt-5 w-full bg-teal-800 p-3 uppercase font-bold text-white text-lg" value="Registrar cliente" />
+                    <Formulario
+                        cliente={cliente}
+                    />
+                    <input type="submit" className="mt-5 w-full bg-teal-800 p-3 uppercase font-bold text-white text-lg" value="Guardar Cambios" />
                 </Form>
             </div>
         </>
-    );
+    )
 }
 
-export default NuevoCliente;
+export default EditarCliente
